@@ -19,6 +19,7 @@ dash-auth = "*"
 
 ipython = "*"
 dash-table-experiments = "*"
+twine = "*"
 
 
 [requires]
