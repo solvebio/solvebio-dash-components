@@ -1,0 +1,16 @@
+build/
+coverage/
+dist/
+lib/
+lib/bundle.js*
+node_modules/
+solvebio_dash_components/metadata.json
+solvebio_dash_components/bundle.js*
+.vscode/
+.npm
+vv/
+venv/
+*.pyc
+*.egg-info
+*.log
+.DS_Store
