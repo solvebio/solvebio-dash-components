@@ -128,10 +128,10 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
 2. Preparing to publish to PyPi
 
         # Bump the PyPi package to the same version
-        $ vi setup.py
+        $ vi solvebio_dash_components/version.py
 
         # Commit to github
-        $ git add setup.py
+        $ git add solvebio_dash_components/version.py
         $ git commit -m "Bump pypi package version to vx.x.x"
 
 3. Publish to npm and PyPi
