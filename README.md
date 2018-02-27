@@ -113,11 +113,11 @@ $ npm run uninstall-local
 
 ## Publishing
 
-Currently, multiple steps must be taken to publish to NPM and PyPi as this project
+Currently, separate steps must be taken to publish to NPM and PyPi as this project
 is based on the [dash-components-archetype][]. There is ongoing work to simplify
 the publishing steps into one workflow [here](https://github.com/plotly/dash-components-archetype/issues/5).
 
-1. Preparing to publish to NPM
+1. Publish to NPM
 
         # Bump the package version
         $ npm version major|minor|patch
@@ -125,18 +125,20 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
         # Push branch and tags to repo
         $ git push --follow-tags
 
-2. Preparing to publish to PyPi
+        # Publish to NPM
+        $ npm publish
+
+2. Publish to PyPi
 
         # Bump the PyPi package to the same version
-        $ vi solvebio_dash_components/version.py
+        $ vim solvebio_dash_components/version.py
 
         # Commit to github
         $ git add solvebio_dash_components/version.py
         $ git commit -m "Bump pypi package version to vx.x.x"
 
-3. Publish to npm and PyPi
-
-        $ npm run publish-all
+        # Publish to PyPi using
+        $ twine upload dist/*
 
 
 ## Builder / Archetype
