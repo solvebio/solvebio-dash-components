@@ -1,13 +1,11 @@
 import os
-import dash
 from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_table_experiments as dt
 import json
-from flask import g, request
+from flask import g
 
 from solvebio.contrib.dash import SolveBioDash
-from solvebio import Dataset, DatasetImport
 
 import solvebio_dash_components as sdc
 
@@ -26,7 +24,8 @@ app.layout = html.Div([
         auto_upload=True
     ),
     html.Div(id='table'),
-    # Placeholder DataTable component (https://community.plot.ly/t/display-tables-in-dash/4707/40)
+    # Placeholder DataTable component
+    # (https://community.plot.ly/t/display-tables-in-dash/4707/40)
     html.Div(dt.DataTable(rows=[{}]), style={'display': 'none'})
 ])
 
@@ -35,7 +34,8 @@ app.layout = html.Div([
     Output('dropzone', 'signed_files'),
     [Input('dropzone', 'files')])
 def generate_s3_url(files):
-    """Takes files from React side, creates SolveBio Object containing signed S3 URL."""
+    """Takes files from React side, creates
+    SolveBio Object containing signed S3 URL."""
     if files:
         vault = g.client.Vault.get_personal_vault()
         files = json.loads(files)
@@ -60,7 +60,8 @@ def generate_s3_url(files):
     Output('table', 'children'),
     [Input('dropzone', 'uploaded_files')])
 def handle_uploaded_files(uploaded_files):
-    """Handles downstream processes using metadata about the uploaded files from React side."""
+    """Handles downstream processes using metadata
+    about the uploaded files from React side."""
     if uploaded_files:
         uploaded_files = json.loads(uploaded_files)[0]
         _id = uploaded_files.get('id')
