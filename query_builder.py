@@ -1,5 +1,3 @@
-import ast
-
 import json
 
 import uuid
@@ -27,16 +25,34 @@ app = dash.Dash('')
 app.scripts.config.serve_locally = True
 
 app.layout = html.Div([
-    dcc.Textarea(
-        id='query',
-        placeholder='No filters selected',
-        style={'width': '40%', 'height': '300'}
+    html.Div('Text-based filter builder: ', style={'margin': '10'}),
+    html.Div(
+        dcc.Textarea(
+            id='query',
+            style={'width': '40%', 'height': '150'}
+        ),
+        style={
+            'margin-left': '26'
+        }
     ),
     sdc.QueryBuilder(
         id='query-builder',
-        value=EMPTY_QUERY_TREE
-    )
+        value=EMPTY_QUERY_TREE,
+        filters=None
+    ),
+    html.Div('Current filters: ', style={'margin-left': '10'}),
+    html.Div(dcc.Textarea(
+        id='current-filters',
+        style={'width': '40%', 'height': '300'}
+    ), style={'margin-left': '26', 'margin-top': '10'})
 ])
+
+
+@app.callback(
+    Output('current-filters', 'value'),
+    [Input('query-builder', 'filters')])
+def show_filter(filters):
+    return filters if filters else ''
 
 
 @app.callback(
@@ -44,7 +60,7 @@ app.layout = html.Div([
     [Input('query', 'value')])
 def generate_query(query):
     if query:
-        query = ast.literal_eval(query)
+        query = json.loads(query)
         tree = tree_builder(query)
         wrapped_tree = tree_wrapper(tree, query)
         return wrapped_tree

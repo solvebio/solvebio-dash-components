@@ -14,26 +14,28 @@ import '../../src/packages/react-awesome-query-builder/css/denormalize.scss';
 const { queryBuilderFormat } = QbUtils;
 
 export default class QueryBuilder extends Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
   getChildren(props) {
-    const jsonStyle = {
-      backgroundColor: 'darkgrey',
-      margin: '10px',
-      padding: '10px'
-    }
     return (
       <div style={{ padding: '10px' }}>
+        <div>GUI-based filter builder: </div>
         <div className="query-builder">
           <Builder {...props} />
         </div>
-        <br />
-        <div>
-          queryBuilderFormat:
-          <pre style={jsonStyle}>
-            {stringify(queryBuilderFormat(props.tree, props.config), undefined, 2)}
-          </pre>
-        </div>
       </div>
     )
+  }
+
+  onChange(tree) {
+    const treeJSON = transit.toJSON(tree);
+    this.props.setProps({
+      filters: stringify(queryBuilderFormat(tree, config), undefined, 2),
+      value: treeJSON
+    })
   }
 
   render() {
@@ -41,8 +43,9 @@ export default class QueryBuilder extends Component {
       <div>
         <Query
           {...config}
-          value={transit.fromJSON(this.props.value)}
           get_children={this.getChildren}
+          onChange={this.onChange}
+          value={transit.fromJSON(this.props.value)}
         ></Query>
       </div>
     );
@@ -52,5 +55,6 @@ export default class QueryBuilder extends Component {
 QueryBuilder.propTypes = {
   id: PropTypes.string,
   value: PropTypes.string,
+  filters: PropTypes.string,
   setProps: PropTypes.func
 };
