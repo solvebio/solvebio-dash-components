@@ -1,0 +1,64 @@
+{
+    "filters": [
+        {
+            "filter1": {
+                "or": [
+                    [
+                        "colA__prefix", 
+                        "ABC"
+                    ], 
+                    {
+                        "or": [
+                            [
+                                "colB__lte", 
+                                4
+                            ], 
+                            [
+                                "colC__gte", 
+                                5
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }, 
+        {
+            "filter2": {
+                "not": {
+                    "or": [
+                        [
+                            "colD", 
+                            false
+                        ], 
+                        {
+                            "not": {
+                                "or": [
+                                    [
+                                        "colB", 
+                                        2
+                                    ], 
+                                    {
+                                        "and": [
+                                            [
+                                                "colC__lt", 
+                                                5
+                                            ], 
+                                            [
+                                                "colE__gt", 
+                                                3
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            }
+                        }, 
+                        [
+                            "colC__lt", 
+                            2
+                        ]
+                    ]
+                }
+            }
+        }
+    ]
+}
