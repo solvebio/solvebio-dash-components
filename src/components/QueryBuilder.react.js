@@ -4,13 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import stringify from 'json-stringify-safe';
 import transit from 'transit-immutable-js';
-// import { Query, Builder, Utils as QbUtils } from 'react-awesome-query-builder';
 import { Query, Builder, Utils as QbUtils } from '../packages/react-awesome-query-builder';
 import config from './QueryBuilder.config';
 
-// import 'react-awesome-query-builder/css/styles.scss';
-// import 'react-awesome-query-builder/css/compact_styles.scss';
-// import 'react-awesome-query-builder/css/denormalize.scss';
 import '../packages/react-awesome-query-builder/css/styles.scss';
 import '../packages/react-awesome-query-builder/css/compact_styles.scss';
 import '../packages/react-awesome-query-builder/css/denormalize.scss';
@@ -57,11 +53,9 @@ export default class QueryBuilder extends Component {
     const fields = { fields: JSON.parse(this.props.fields) };
     Object.assign(config, fields);
 
-    // const { tree, ...config_props } = config;
     return (
       <div>
         <Query
-          // {...config_props}
           {...config}
           value={transit.fromJSON(this.props.value)}
           onChange={this.onChange}

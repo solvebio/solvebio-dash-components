@@ -13,4 +13,3 @@ venv/
 *.egg-info
 *.log
 .DS_Store
-!src/packages/react-awesome-query-builder/build/**/*

@@ -1,7 +1,6 @@
 /*eslint-disable */
 import React from 'react';
 import { Widgets, Operators } from '../packages/react-awesome-query-builder';
-// import { Widgets, Operators } from 'react-awesome-query-builder';
 const {
   TextWidget,
   NumberWidget,
