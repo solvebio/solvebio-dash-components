@@ -72,7 +72,7 @@ def display_page(pathname):
         if field.data_type != u'auto'
     }
 
-    with open('test/filters.txt') as saved_filters:
+    with open('test/filters.json') as saved_filters:
         filters = saved_filters.read()
         filters = json.loads(filters)
         filters = filters['filters']
@@ -144,13 +144,13 @@ def display_page(pathname):
 def save_filters(_, new_filters):
     if new_filters:
         new_filters = json.loads(new_filters)
-        with open('test/filters.txt') as saved_filters:
+        with open('test/filters.json') as saved_filters:
             all_filters = saved_filters.read()
             all_filters = json.loads(all_filters)
             all_filters['filters'].append({
                 'filter'+str(len(all_filters['filters'])+1): new_filters
             })
-        with open('test/filters.txt', 'w') as saved_filters:
+        with open('test/filters.json', 'w') as saved_filters:
             saved_filters.write(json.dumps(all_filters, indent=4))
         return '/'
 
