@@ -1,19 +1,19 @@
 {
-  "_from": "react-awesome-query-builder@^0.1.38",
+  "_from": "react-awesome-query-builder",
   "_id": "react-awesome-query-builder@0.1.38",
   "_inBundle": false,
   "_integrity": "sha512-XUhYajFEjxyikib9evWhQO/iBAHNHlHKItCM0EWfNLy6KV8J3B4kalDOym5VAQMiPQPGogVH7V2K0qM8npFelQ==",
   "_location": "/react-awesome-query-builder",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "tag",
     "registry": true,
-    "raw": "react-awesome-query-builder@^0.1.38",
+    "raw": "react-awesome-query-builder",
     "name": "react-awesome-query-builder",
     "escapedName": "react-awesome-query-builder",
-    "rawSpec": "^0.1.38",
+    "rawSpec": "",
     "saveSpec": null,
-    "fetchSpec": "^0.1.38"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/react-awesome-query-builder/-/react-awesome-query-builder-0.1.38.tgz",
   "_shasum": "5ecc91ef3eababda81097618d982240f743b2df5",
-  "_spec": "react-awesome-query-builder@^0.1.38",
+  "_spec": "react-awesome-query-builder",
   "_where": "/Users/work/Code/solvebio-dash-components",
   "author": {
     "name": "Sebastian Siemssen",
