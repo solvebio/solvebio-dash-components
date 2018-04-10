@@ -1,6 +1,7 @@
 /*eslint-disable */
 import React from 'react';
-import { Widgets, Operators } from '../../src/packages/react-awesome-query-builder';
+import { Widgets, Operators } from '../packages/react-awesome-query-builder';
+// import { Widgets, Operators } from 'react-awesome-query-builder';
 const {
   TextWidget,
   NumberWidget,
@@ -36,50 +37,6 @@ export default {
       }
     }
   },
-  fields: {
-    pass: {
-      label: 'pass',
-      type: 'boolean',
-      valueSources: ['value']
-    },
-    gene: {
-      label: 'gene',
-      type: 'text',
-      valueSources: ['value']
-    },
-    depth: {
-      label: 'depth',
-      type: 'number',
-      valueSources: ['value']
-    },
-    vd: {
-      label: 'vd',
-      type: 'number',
-      valueSources: ['value']
-    },
-    allelefreq: {
-      label: 'allelefreq',
-      type: 'number',
-      valueSources: ['value']
-    },
-    msi: {
-      label: 'msi',
-      type: 'number',
-      valueSources: ['value']
-    },
-    type: {
-      label: 'type',
-      type: 'select',
-      valueSources: ['value'],
-      operators: [
-        'select_any_in',
-      ],
-      listValues: {
-        protein_protein_contact: 'protein_protein_contact',
-        structural_interaction_variant: 'structural_interaction_variant'
-      }
-    }
-  },
   types: {
     text: {
       widgets: {
@@ -90,7 +47,8 @@ export default {
             'is_none',
             'contains',
             'prefix',
-            'regex'
+            'regex',
+            'select_any_in'
           ],
           widgetProps: {
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => ('_' + JSON.stringify(val)),
@@ -362,7 +320,7 @@ export default {
       reversedOp: 'select_equals'
     },
     select_any_in: {
-      label: 'Any in',
+      label: 'in',
       labelForFormat: 'IN',
       formatOp: (field, op, values, valueSrc, valueType, opDef, operatorOptions, isForDisplay) => {
         if (valueSrc == 'value')
