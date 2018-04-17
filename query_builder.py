@@ -352,7 +352,7 @@ app.css.append_css(
 
 # Loading screen CSS
 app.css.append_css(
-    {"external_url": "https://codepen.io/davidhpark/pen/OQdKjJ.css"})
+    {"external_url": "https://codepen.io/davidhpark/pen/eMomWj.css"})
 
 if __name__ == '__main__':
     app.run_server(debug=True)
