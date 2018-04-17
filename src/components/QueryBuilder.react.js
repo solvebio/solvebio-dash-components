@@ -21,7 +21,7 @@ export default class QueryBuilder extends Component {
 
   getChildren(props) {
     const tree = queryBuilderFormat(props.tree, props.config);
-    const selectedFilters = tree ? stringify([{ and: tree}], undefined, 2) : '';
+    const selectedFilters = tree ? stringify([{ and: tree }], undefined, 2) : '';
     return (
       <div style={{ padding: '10px', width: '50%' }}>
         <div>GUI-based filter builder:</div>
@@ -39,12 +39,14 @@ export default class QueryBuilder extends Component {
 
   onChange(tree) {
     const treeJSON = transit.toJSON(tree);
+    const encodedFilters = btoa(JSON.stringify(queryBuilderFormat(tree, config)));
     // if statement required because of possible race condition
     // Component is loaded before Dash passes component setProps
     if (this.props.setProps) {
       this.props.setProps({
         filters: stringify(queryBuilderFormat(tree, config), undefined, 2),
-        value: treeJSON
+        encodedFilters: encodedFilters,
+        value: treeJSON,
       })
     }
   }
