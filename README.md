@@ -119,11 +119,17 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
 
 1. Publish to NPM
 
+        # Prepublish
+        $ npm run prepublish
+
         # Bump the package version
-        $ npm version major|minor|patch
+        $ vim package.json
+        
+        # Create new tag
+        $ git tag -a vx.x -m "new tag vx.x"
 
         # Push branch and tags to repo
-        $ git push --follow-tags
+        $ git push origin --tags
 
         # Publish to NPM
         $ npm publish
@@ -136,6 +142,9 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
         # Commit to github
         $ git add solvebio_dash_components/version.py
         $ git commit -m "Bump pypi package version to vx.x.x"
+        
+        # Create new dist
+        $ python setup.py sdist
 
         # Publish to PyPi using
         $ twine upload dist/*
