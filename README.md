@@ -126,7 +126,7 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
         $ vim package.json
         
         # Create new tag
-        $ git tag -a vx.x -m "new tag vx.x"
+        $ git tag -a vx.x.x -m "tag message"
 
         # Push branch and tags to repo
         $ git push origin --tags
