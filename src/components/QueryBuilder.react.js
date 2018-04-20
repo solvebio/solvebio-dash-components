@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import stringify from 'json-stringify-safe';
 import transit from 'transit-immutable-js';
+import URLSafeBase64 from 'urlsafe-base64';
 import { Query, Builder, Utils as QbUtils } from '../packages/react-awesome-query-builder';
 import config from './QueryBuilder.config';
 
@@ -39,14 +40,17 @@ export default class QueryBuilder extends Component {
 
   onChange(tree) {
     const treeJSON = transit.toJSON(tree);
-    const encodedFilters = btoa(JSON.stringify(queryBuilderFormat(tree, config)));
+    const nestedFilter = JSON.stringify(
+      [{type: 'nested', nested: queryBuilderFormat(tree, config)}]
+    );
+    const encodedFilters = URLSafeBase64.encode(btoa(nestedFilter));
     // if statement required because of possible race condition
     // Component is loaded before Dash passes component setProps
     if (this.props.setProps) {
       this.props.setProps({
         filters: stringify(queryBuilderFormat(tree, config), undefined, 2),
         encodedFilters: encodedFilters,
-        value: treeJSON,
+        value: treeJSON
       })
     }
   }

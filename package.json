@@ -1,6 +1,6 @@
 {
   "name": "solvebio-dash-components",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "SolveBio Dash component suite",
   "main": "lib/index.js",
   "repository": {
@@ -45,7 +45,8 @@
     "react-s3-uploader": "^4.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
-    "transit-immutable-js": "^0.7.0"
+    "transit-immutable-js": "^0.7.0",
+    "urlsafe-base64": "^1.0.0"
   },
   "devDependencies": {
     "dash-components-archetype-dev": "^0.2.11",
