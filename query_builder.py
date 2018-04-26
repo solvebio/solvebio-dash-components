@@ -15,16 +15,11 @@ from solvebio.contrib.dash import SolveBioDash
 import solvebio_dash_components as sdc
 import solvebio
 
-# solvebio.api_host = 'https://api-stag.solvebio.com'
-
 app = SolveBioDash(
     name=__name__,
     title='NGS Filtering App',
     app_url='https://ngsfilterer.apps.solvebio.net',
-    # app_url='http://127.0.0.1:8050',
-    # solvebio_url='http://solvebio.solvebio.test',
-    client_id='0lxt2cuv78f9a2zynlpqgxoc3o1pgb4whwd5z5wk'
-)
+    client_id='0lxt2cuv78f9a2zynlpqgxoc3o1pgb4whwd5z5wk')
 
 EMPTY_QUERY = ('["~#iM",["type","group","id",'
                '"8a888b9a-0123-4456-b89a-b1624f8c67de","children1",'
@@ -125,7 +120,6 @@ def display_page(pathname):
             value=EMPTY_QUERY,
             fields=json.dumps(fields)
         ),
-        # html.Div(id='filtered-dataset-link', style={'margin': '10'}),
         html.Br(),
         html.Span(
             html.Button('Apply Filters', id='apply-filters-button'),
@@ -140,18 +134,6 @@ def display_page(pathname):
             style={'padding': '2px'}
         ),
     )
-
-
-# @app.callback(
-#     Output('filtered-dataset-link', 'children'),
-#     [Input('query-builder', 'encodedFilters')],
-#     [State('dataset-id', 'value')])
-# def generate_filtered_dataset_link(filters, dataset_id):
-#     if filters:
-#         domain = g.client.User.retrieve()['account']['domain']
-#         root = 'http://{}.solvebio.test/data/'.format(domain)
-#         return html.A('Link to filtered dataset',
-#                       href=root + dataset_id + '/summary#' + filters)
 
 
 @app.callback(
