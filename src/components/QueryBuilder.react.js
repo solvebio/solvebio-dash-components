@@ -41,7 +41,11 @@ export default class QueryBuilder extends Component {
   onChange(tree) {
     const treeJSON = transit.toJSON(tree);
     const nestedFilter = JSON.stringify(
-      [{type: 'nested', nested: queryBuilderFormat(tree, config)}]
+      {
+        filters: [{type: 'nested', nested: queryBuilderFormat(tree, config)}],
+        summaryFields: null,
+        tableFields: []
+      }
     );
     const encodedFilters = URLSafeBase64.encode(btoa(nestedFilter));
     // if statement required because of possible race condition

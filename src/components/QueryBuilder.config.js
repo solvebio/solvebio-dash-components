@@ -47,7 +47,8 @@ export default {
             'contains',
             'prefix',
             'regex',
-            'select_any_in'
+            'select_any_in',
+            'is'
           ],
           widgetProps: {
             formatValue: (val, fieldDef, wgtDef, isForDisplay) => ('_' + JSON.stringify(val)),
