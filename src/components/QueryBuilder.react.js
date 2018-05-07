@@ -21,20 +21,20 @@ export default class QueryBuilder extends Component {
   }
 
   getChildren(props) {
-    const tree = queryBuilderFormat(props.tree, props.config);
-    const selectedFilters = tree ? stringify([{ and: tree }], undefined, 2) : '';
+    // const tree = queryBuilderFormat(props.tree, props.config);
+    // const selectedFilters = tree ? stringify([{ and: tree }], undefined, 2) : '';
     return (
-      <div style={{ padding: '10px', width: '50%' }}>
-        <div>GUI-based filter builder:</div>
-        <div className="query-builder">
+      // <div style={{ padding: '10px' }}>
+      //   <div>GUI-based filter builder:</div>
+        // <div className="query-builder">
           <Builder {...props} />
-        </div>
-        <div>Selected Filters:</div>
-        <textarea
-          value={selectedFilters}
-          style={{ margin: '10px', width: '80%', height: '150px' }}
-        />
-      </div>
+        // </div>
+      //   <div>Selected Filters:</div>
+      //   <textarea
+      //     value={selectedFilters}
+      //     style={{ margin: '10px', width: '95%', height: '100px' }}
+      //   />
+      // </div>
     )
   }
 

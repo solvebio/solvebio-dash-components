@@ -122,7 +122,7 @@ exports.default = function (Group) {
         return _react2.default.createElement(
           'div',
           {
-            className: 'group-or-rule-container group-container',
+            // className: 'group-or-rule-container group-container',
             'data-id': this.props.id
           },
           [this.props.dragging && this.props.dragging.id == this.props.id ? _react2.default.createElement(
