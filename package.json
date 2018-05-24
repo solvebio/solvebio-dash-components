@@ -1,6 +1,6 @@
 {
   "name": "solvebio-dash-components",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "SolveBio Dash component suite",
   "main": "lib/index.js",
   "repository": {
@@ -43,6 +43,7 @@
     "react-dom": "^15.5.4",
     "react-dropzone": "^4.2.8",
     "react-s3-uploader": "^4.6.2",
+    "react-table": "^6.8.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "transit-immutable-js": "^0.7.0",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "dash-components-archetype-dev": "^0.2.11",
     "enzyme": "^2.8.2",
+    "namor": "^1.0.1",
     "react-test-renderer": "^15.5.4"
   }
 }
