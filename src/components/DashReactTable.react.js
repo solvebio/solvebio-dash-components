@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { makeData, Logo, Tips } from "./DashReactTable.config";
-
 import ReactTable from 'react-table';
 
 import 'react-table/react-table.css';
@@ -22,13 +20,13 @@ class DashReactTable extends Component {
 
   getTrProps(state, rowInfo) {
     return {
-      onClick: (e) => {
+      onClick: () => {
         this.setState({
           selected: rowInfo.index === this.state.selected ? null : rowInfo.index
         })
       },
       style: {
-        background: rowInfo.index === this.state.selected ? 'rgb(144,238,144,.6)' : 'inherit',
+        background: rowInfo.index === this.state.selected ? 'rgb(144,238,144,.6)' : 'inherit'
       }
     };
   }

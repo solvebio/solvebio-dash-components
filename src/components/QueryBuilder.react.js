@@ -43,7 +43,7 @@ export default class QueryBuilder extends Component {
     const nestedFilter = JSON.stringify(
       {
         filters: [{type: 'nested', nested: queryBuilderFormat(tree, config)}],
-        query: "",
+        query: '',
         summaryFields: [],
         tableFields: []
       }

@@ -1,6 +1,7 @@
-import React from "react";
-import namor from "namor";
-import "./index.css";
+/*eslint-disable */
+import React from 'react';
+import namor from 'namor';
+import './index.css';
 
 const range = len => {
   const arr = [];
@@ -20,8 +21,8 @@ const newPerson = () => {
     progress: Math.floor(Math.random() * 100),
     status:
       statusChance > 0.66
-        ? "relationship"
-        : statusChance > 0.33 ? "complicated" : "single"
+        ? 'relationship'
+        : statusChance > 0.33 ? 'complicated' : 'single'
   };
 };
 
@@ -41,12 +42,12 @@ export const Logo = () =>
     <a href="https://github.com/react-tools/react-table" target="_blank">
       <img
         src="https://github.com/react-tools/media/raw/master/logo-react-table.png"
-        style={{ width: `150px`, margin: ".5em auto .3em" }}
+        style={{ width: '150px', margin: '.5em auto .3em' }}
       />
     </a>
   </div>;
 
 export const Tips = () =>
-  <div style={{ textAlign: "center" }}>
+  <div style={{ textAlign: 'center' }}>
     <em>Tip: Hold shift when sorting to multi-sort!</em>
   </div>;
