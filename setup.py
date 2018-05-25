@@ -14,6 +14,7 @@ setup(
     version=__version__,
     description='The SolveBio Dash components suite',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Solve, Inc.',
     author_email='contact@solvebio.com',
     url='https://github.com/solvebio/solvebio-dash-components',
