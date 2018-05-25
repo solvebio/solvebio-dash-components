@@ -8,8 +8,9 @@ import 'react-table/react-table.css';
 class DashReactTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {selected: null};
+    this.state = { selected: null };
     this.getTrProps = this.getTrProps.bind(this);
+    this.onSortedChange = this.onSortedChange.bind(this);
   }
 
   insertLinks(key, value) {
@@ -19,16 +20,26 @@ class DashReactTable extends Component {
   }
 
   getTrProps(state, rowInfo) {
-    return {
-      onClick: () => {
-        this.setState({
-          selected: rowInfo.index === this.state.selected ? null : rowInfo.index
-        })
-      },
-      style: {
-        background: rowInfo.index === this.state.selected ? 'rgb(144,238,144,.6)' : 'inherit'
-      }
-    };
+    if (rowInfo) {
+      return {
+        onClick: () => {
+          this.setState({
+            selected: rowInfo.index === this.state.selected ? null : rowInfo.index
+          })
+        },
+        style: {
+          background: rowInfo.index === this.state.selected ? 'rgb(144,238,144,.6)' : 'inherit'
+        }
+      };
+    }
+    return {};
+  }
+
+  onSortedChange(newSorted, column, shiftKey) {
+    console.log(newSorted);
+    this.props.setProps({
+      sorted: JSON.stringify(newSorted)
+    });
   }
 
   render() {
@@ -39,7 +50,9 @@ class DashReactTable extends Component {
     return (
       <div>
         <ReactTable
-          {...tableProps}
+          // filterable
+          // {...tableProps}
+          onSortedChange={this.onSortedChange}
           data={data}
           columns={columns}
           defaultPageSize={10}
@@ -54,7 +67,8 @@ class DashReactTable extends Component {
 DashReactTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
-  columns: PropTypes.string
+  columns: PropTypes.string,
+  sorted: PropTypes.string
 };
 
 export default DashReactTable;
