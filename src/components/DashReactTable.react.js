@@ -35,8 +35,7 @@ class DashReactTable extends Component {
     return {};
   }
 
-  onSortedChange(newSorted, column, shiftKey) {
-    console.log(newSorted);
+  onSortedChange(newSorted) {
     this.props.setProps({
       sorted: JSON.stringify(newSorted)
     });
@@ -45,7 +44,7 @@ class DashReactTable extends Component {
   render() {
     const data = JSON.parse(this.props.data)
     const columns = JSON.parse(this.props.columns, this.insertLinks);
-    const tableProps = { getTrProps: this.getTrProps };
+    // const tableProps = { getTrProps: this.getTrProps };
 
     return (
       <div>
