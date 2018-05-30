@@ -11,12 +11,31 @@ class DashReactTable extends Component {
     this.state = { selected: null };
     this.getTrProps = this.getTrProps.bind(this);
     this.onSortedChange = this.onSortedChange.bind(this);
+    this.styleRowBackground = this.styleRowBackground.bind(this);
   }
 
   insertLinks(key, value) {
-    return (key === 'Cell' && value === 'url')
-      ? row => <a href={row.column.url + row.value} target='_blank'>{row.column.label}</a>
-      : value
+    if (key === 'Cell' && value === 'html') {
+      return row => <div dangerouslySetInnerHTML={{__html: row.value}} />;
+    }
+    else {
+      return value;
+    }
+  }
+
+  styleRowBackground(rowInfo) {
+    if (rowInfo.index === this.state.selected) {
+      return 'rgb(144,238,144,.6)';
+    }
+    else if (this.props.unknown && (rowInfo.row.Significance.startsWith('likely') || rowInfo.row.Significance.startsWith('known'))) {
+      return 'rgb(255,250,205,.6)'
+    }
+    else if (rowInfo.row.Significance.startsWith('known')) {
+      return 'rgb(255,250,205,.6)'
+    }
+    else {
+      return 'inherit';
+    }
   }
 
   getTrProps(state, rowInfo) {
@@ -28,7 +47,7 @@ class DashReactTable extends Component {
           })
         },
         style: {
-          background: rowInfo.index === this.state.selected ? 'rgb(144,238,144,.6)' : 'inherit'
+          background: this.styleRowBackground(rowInfo)
         }
       };
     }
@@ -54,7 +73,7 @@ class DashReactTable extends Component {
           onSortedChange={this.onSortedChange}
           data={data}
           columns={columns}
-          defaultPageSize={10}
+          defaultPageSize={data.length}
           className="-striped -highlight"
         />
       </div>
@@ -67,7 +86,8 @@ DashReactTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
   columns: PropTypes.string,
-  sorted: PropTypes.string
+  sorted: PropTypes.string,
+  unknown: PropTypes.bool
 };
 
 export default DashReactTable;
