@@ -16,7 +16,10 @@ class DashReactTable extends Component {
 
   insertLinks(key, value) {
     if (key === 'Cell' && value === 'html') {
-      return row => <div dangerouslySetInnerHTML={{__html: row.value}} />;
+      return row => <span dangerouslySetInnerHTML={{__html: row.value}} />;
+    }
+    else if (key === 'Cell') {
+      return row => <span>{row.value}</span>;
     }
     else {
       return value;
@@ -63,6 +66,11 @@ class DashReactTable extends Component {
   render() {
     const data = JSON.parse(this.props.data)
     const columns = JSON.parse(this.props.columns, this.insertLinks);
+    columns.forEach(column => {
+      if (!('Cell' in column)) {
+        column['Cell'] = row => <span>{row.value}</span>;
+      }
+    });
     const tableProps = { getTrProps: this.getTrProps };
 
     return (
