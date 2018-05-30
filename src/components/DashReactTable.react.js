@@ -81,8 +81,7 @@ class DashReactTable extends Component {
           onSortedChange={this.onSortedChange}
           data={data}
           columns={columns}
-          pageSize={data.length}
-          showPagination={false}
+          defaultPageSize={100}
           className="-striped -highlight"
         />
       </div>
