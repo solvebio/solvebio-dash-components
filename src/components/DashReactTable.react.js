@@ -18,8 +18,8 @@ class DashReactTable extends Component {
     if (key === 'Cell' && value === 'html') {
       return row => <span dangerouslySetInnerHTML={{__html: row.value}} />;
     }
-    else if (key === 'Cell') {
-      return row => <span>{row.value}</span>;
+    else if (key === 'Cell' && value === 'percent') {
+      return row => <span className='column__percent'>{row.value}</span>
     }
     else {
       return value;
