@@ -30,10 +30,10 @@ class DashReactTable extends Component {
     if (rowInfo.index === this.state.selected) {
       return 'rgb(144,238,144,.6)';
     }
-    else if (this.props.unknown && (rowInfo.row.Significance.startsWith('likely') || rowInfo.row.Significance.startsWith('known'))) {
+    else if (this.props.unknown && rowInfo.row.Significance &&(rowInfo.row.Significance.startsWith('likely') || rowInfo.row.Significance.startsWith('known'))) {
       return 'rgb(255,250,205,.6)'
     }
-    else if (rowInfo.row.Significance.startsWith('known')) {
+    else if (rowInfo.row.Significance && rowInfo.row.Significance.startsWith('known')) {
       return 'rgb(255,250,205,.6)'
     }
     else {
@@ -82,6 +82,7 @@ class DashReactTable extends Component {
           data={data}
           columns={columns}
           pageSize={Math.min(data.length, 100)}
+          showPagination={data.length > 100}
           className="-striped -highlight"
         />
       </div>
