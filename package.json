@@ -1,6 +1,6 @@
 {
   "name": "solvebio-dash-components",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "SolveBio Dash component suite",
   "main": "lib/index.js",
   "repository": {
@@ -33,6 +33,7 @@
     "copyfiles": "^1.2.0",
     "css-loader": "^0.28.11",
     "dash-components-archetype": "^0.2.11",
+    "javascript-natural-sort": "^0.7.1",
     "json-stringify-safe": "^5.0.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
