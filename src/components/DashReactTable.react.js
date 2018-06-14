@@ -63,14 +63,12 @@ class DashReactTable extends Component {
   }
 
   onSortedChange(newSorted) {
-    console.log(this.props);
     this.props.setProps({
       sorted: JSON.stringify(newSorted)
     });
   }
 
   defaultFilterMethod(filter, row) {
-    const id = filter.pivotId || filter.id;
     return String(row[filter.id].toLowerCase()).includes(filter.value.toLowerCase());
   }
 
