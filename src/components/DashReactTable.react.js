@@ -69,7 +69,9 @@ class DashReactTable extends Component {
   }
 
   defaultFilterMethod(filter, row) {
-    return String(row[filter.id].toLowerCase()).includes(filter.value.toLowerCase());
+    if (row[filter.id] !== null) {
+      return String(row[filter.id].toLowerCase()).includes(filter.value.toLowerCase());
+    }
   }
 
   render() {
