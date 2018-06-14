@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import ReactTable from 'react-table';
 
+import naturalSort from 'javascript-natural-sort';
+
 import 'react-table/react-table.css';
 
 class DashReactTable extends Component {
@@ -14,12 +16,15 @@ class DashReactTable extends Component {
     this.styleRowBackground = this.styleRowBackground.bind(this);
   }
 
-  insertLinks(key, value) {
+  processColumns(key, value) {
     if (key === 'Cell' && value === 'html') {
-      return row => <span dangerouslySetInnerHTML={{__html: row.value}} />;
+      return row => <span dangerouslySetInnerHTML={{__html: row.original[row.column.htmlAccessor]}} />;
     }
     else if (key === 'Cell' && value === 'percent') {
-      return row => <span className='column__percent'>{row.value}</span>
+      return row => <span className='column__percent'>{row.value}</span>;
+    }
+    else if (key === 'sortMethod' && value === 'natural') {
+      return naturalSort;
     }
     else {
       return value;
@@ -58,14 +63,20 @@ class DashReactTable extends Component {
   }
 
   onSortedChange(newSorted) {
+    console.log(this.props);
     this.props.setProps({
       sorted: JSON.stringify(newSorted)
     });
   }
 
+  defaultFilterMethod(filter, row) {
+    const id = filter.pivotId || filter.id;
+    return String(row[filter.id].toLowerCase()).includes(filter.value.toLowerCase());
+  }
+
   render() {
     const data = JSON.parse(this.props.data)
-    const columns = JSON.parse(this.props.columns, this.insertLinks);
+    const columns = JSON.parse(this.props.columns, this.processColumns);
     columns.forEach(column => {
       if (!('Cell' in column)) {
         column['Cell'] = row => <span>{row.value}</span>;
@@ -83,6 +94,7 @@ class DashReactTable extends Component {
           columns={columns}
           pageSize={Math.min(data.length, 100)}
           showPagination={data.length > 100}
+          defaultFilterMethod={this.defaultFilterMethod}
           className="-striped -highlight"
         />
       </div>
