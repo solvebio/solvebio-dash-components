@@ -1,6 +1,6 @@
 {
   "name": "solvebio-dash-components",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "SolveBio Dash component suite",
   "main": "lib/index.js",
   "repository": {
@@ -43,6 +43,7 @@
     "react-awesome-query-builder": "^0.1.38",
     "react-dom": "^15.5.4",
     "react-dropzone": "^4.2.8",
+    "react-perfect-scrollbar": "^1.1.1",
     "react-s3-uploader": "^4.6.2",
     "react-table": "^6.8.2",
     "sass-loader": "^6.0.7",

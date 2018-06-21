@@ -10,10 +10,28 @@ import 'react-table/react-table.css';
 class DashReactTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { selected: null };
+    this.state = {
+      selected: null,
+      width: 0,
+      height: 0
+    };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.getTrProps = this.getTrProps.bind(this);
     this.onSortedChange = this.onSortedChange.bind(this);
     this.styleRowBackground = this.styleRowBackground.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   processColumns(key, value) {
@@ -83,6 +101,7 @@ class DashReactTable extends Component {
       }
     });
     const tableProps = { getTrProps: this.getTrProps };
+    const numRows = Math.floor(this.state.height * 0.4 / 30);
 
     return (
       <div>
@@ -92,8 +111,8 @@ class DashReactTable extends Component {
           onSortedChange={this.onSortedChange}
           data={data}
           columns={columns}
-          pageSize={Math.min(data.length, 100)}
-          showPagination={data.length > 100}
+          pageSize={Math.min(data.length, numRows)}
+          showPagination={data.length > numRows}
           defaultFilterMethod={this.defaultFilterMethod}
           className="-striped -highlight"
         />
