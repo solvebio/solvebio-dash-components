@@ -112,6 +112,7 @@ class DashReactTable extends Component {
           data={data}
           columns={columns}
           pageSize={Math.min(data.length, numRows)}
+          showPageSizeOptions={false}
           showPagination={data.length > numRows}
           defaultFilterMethod={this.defaultFilterMethod}
           className="-striped -highlight"
