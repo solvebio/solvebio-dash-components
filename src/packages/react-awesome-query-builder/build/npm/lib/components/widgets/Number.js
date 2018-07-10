@@ -102,6 +102,6 @@ var NumberWidget = (_temp = _class = function (_Component) {
 }, _class.defaultProps = {
   min: undefined,
   max: undefined,
-  step: undefined
+  step: 0.1
 }, _temp);
 exports.default = NumberWidget;

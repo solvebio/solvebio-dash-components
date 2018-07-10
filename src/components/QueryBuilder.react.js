@@ -35,19 +35,17 @@ export default class QueryBuilder extends Component {
       //     style={{ margin: '10px', width: '95%', height: '100px' }}
       //   />
       // </div>
-    )
+    );
   }
 
   onChange(tree) {
     const treeJSON = transit.toJSON(tree);
-    const nestedFilter = JSON.stringify(
-      {
+    const nestedFilter = JSON.stringify({
         filters: [{type: 'nested', nested: queryBuilderFormat(tree, config)}],
         query: '',
         summaryFields: [],
         tableFields: []
-      }
-    );
+      });
     const encodedFilters = URLSafeBase64.encode(btoa(nestedFilter));
     // if statement required because of possible race condition
     // Component is loaded before Dash passes component setProps
@@ -56,7 +54,7 @@ export default class QueryBuilder extends Component {
         filters: stringify(queryBuilderFormat(tree, config), undefined, 2),
         encodedFilters: encodedFilters,
         value: treeJSON
-      })
+      });
     }
   }
 
