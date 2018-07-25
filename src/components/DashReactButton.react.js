@@ -9,7 +9,8 @@ class DashReactButton extends Component {
 
   disableButton() {
     this.props.setProps({
-      disabled: true
+      disabled: true,
+      n_clicks: this.props.n_clicks + 1
     });
   }
 
@@ -29,7 +30,12 @@ DashReactButton.propTypes = {
   id: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  disabled: PropTypes.string
+  disabled: PropTypes.string,
+  n_clicks: PropTypes.integer
 };
+
+DashReactButton.defaultProps = {
+  n_clicks: 0
+}
 
 export default DashReactButton;
