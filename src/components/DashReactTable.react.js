@@ -25,18 +25,18 @@ class DashReactTable extends Component {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-  
+
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   processColumns(key, value) {
     if (key === 'Cell' && value === 'html') {
-      return row => <span dangerouslySetInnerHTML={{__html: row.original[row.column.htmlAccessor]}} />;
+      return row => <span dangerouslySetInnerHTML={{ __html: row.original[row.column.htmlAccessor] }} />;
     }
     else if (key === 'Cell' && value === 'percent') {
       return row => <span className='column__percent'>{row.value}</span>;
@@ -53,11 +53,11 @@ class DashReactTable extends Component {
     if (rowInfo.index === this.state.selected) {
       return 'rgb(144,238,144,.6)';
     }
-    else if (this.props.unknown && rowInfo.row.Significance &&(rowInfo.row.Significance.startsWith('likely') || rowInfo.row.Significance.startsWith('known'))) {
-      return 'rgb(255,250,205,.6)'
+    else if (this.props.unknown && rowInfo.row.Significance && (rowInfo.row.Significance.startsWith('likely') || rowInfo.row.Significance.startsWith('known'))) {
+      return 'rgb(255,250,205,.6)';
     }
     else if (rowInfo.row.Significance && rowInfo.row.Significance.startsWith('known')) {
-      return 'rgb(255,250,205,.6)'
+      return 'rgb(255,250,205,.6)';
     }
     else {
       return 'inherit';
@@ -70,7 +70,7 @@ class DashReactTable extends Component {
         onClick: () => {
           this.setState({
             selected: rowInfo.index === this.state.selected ? null : rowInfo.index
-          })
+          });
         },
         style: {
           background: this.styleRowBackground(rowInfo)
@@ -93,15 +93,16 @@ class DashReactTable extends Component {
   }
 
   render() {
-    const data = JSON.parse(this.props.data)
+    const data = JSON.parse(this.props.data);
     const columns = JSON.parse(this.props.columns, this.processColumns);
     columns.forEach(column => {
       if (!('Cell' in column)) {
-        column['Cell'] = row => <span>{row.value}</span>;
+        column.Cell = row => <span>{row.value}</span>;
       }
     });
     const tableProps = { getTrProps: this.getTrProps };
     const numRows = Math.floor(this.state.height * 0.4 / 30);
+    const sortBy = JSON.parse(this.props.sortBy);
 
     return (
       <div>
@@ -115,6 +116,7 @@ class DashReactTable extends Component {
           showPageSizeOptions={false}
           showPagination={data.length > numRows}
           defaultFilterMethod={this.defaultFilterMethod}
+          defaultSorted={sortBy}
           className="-striped -highlight"
         />
       </div>
@@ -128,6 +130,7 @@ DashReactTable.propTypes = {
   data: PropTypes.string,
   columns: PropTypes.string,
   sorted: PropTypes.string,
+  sortBy: PropTypes.string,
   unknown: PropTypes.bool
 };
 
