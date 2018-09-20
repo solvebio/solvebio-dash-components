@@ -125,6 +125,10 @@ class DashReactTable extends Component {
 
 }
 
+DashReactTable.defaultProps = {
+  sortBy: []
+};
+
 DashReactTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
