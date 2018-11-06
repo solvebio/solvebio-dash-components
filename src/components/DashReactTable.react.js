@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { OverlayTrigger, Popover } from 'react-bootstrap';
+
 import ReactTable from 'react-table';
 
 import naturalSort from 'javascript-natural-sort';
@@ -40,6 +42,40 @@ class DashReactTable extends Component {
     }
     else if (key === 'Cell' && value === 'percent') {
       return row => <span className='column__percent'>{row.value}</span>;
+    }
+    else if (key === 'Cell' && value === 'tags') {
+      return row => {
+        if (!row.original.tags || !row.original.variant) {
+          return null;
+        }
+
+        const tags = row.original[row.column.tagsAccessor].map(tag => {
+          return <p className="hyrule--tags  font--base  white-space--nowrap  ellipsis">{tag}</p>;
+        });
+        const popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
+          <div className="display--flex  flex-wrap--wrap  grid--100">
+            <div className="grid--100  padding--y-smaller  padding--x-largest  border--bottom">
+              <div className="display--flex  flex-align-items--center  grid--100">
+                <i className="icon--shopping_tag-content  font--base  color--black-light  content--base  margin--right-smallest"></i>
+                <span className="grid--grow  font--small  color--black-light">Tags</span>
+              </div>
+            </div>
+            <div className="display--flex  flex-wrap--wrap  flex-align-items--center  grid--100  padding--top-smaller  padding--bottom-tiniest  padding--x-largest">
+              {tags}
+            </div>
+          </div>
+        </Popover>;
+
+        return <a href={'tag?variant=' + row.original.variant}>
+          <OverlayTrigger
+            trigger={['hover', 'focus']}
+            placement='right'
+            overlay={popoverHoverFocus}
+          >
+            <i className="icon--shopping_tag  font--base  color--green-base"></i>
+          </OverlayTrigger>
+        </a>;
+      };
     }
     else if (key === 'sortMethod' && value === 'natural') {
       return naturalSort;

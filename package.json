@@ -1,6 +1,6 @@
 {
   "name": "solvebio-dash-components",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "SolveBio Dash component suite",
   "main": "lib/index.js",
   "repository": {
@@ -37,11 +37,12 @@
     "json-stringify-safe": "^5.0.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.10.0",
     "prop-types": "^15.5.9",
     "ramda": "^0.25.0",
     "react": "^15.5.4",
     "react-awesome-query-builder": "^0.1.38",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^15.5.4",
     "react-dropzone": "^4.2.8",
     "react-modal": "^3.4.5",
