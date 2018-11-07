@@ -66,7 +66,7 @@ class DashReactTable extends Component {
           </div>
         </Popover>;
 
-        return <a href={'tag?variant=' + row.original.variant}>
+        return <a href={'tag?variant=' + row.original.variant} className="display--flex  flex-align-items--center  flex-justify-content--center">
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement='right'
