@@ -43,30 +43,30 @@ class DashReactTable extends Component {
     else if (key === 'Cell' && value === 'percent') {
       return row => <span className='column__percent'>{row.value}</span>;
     }
-    else if (key === 'Cell' && value === 'tags') {
+    else if (key === 'Cell' && value === 'comments') {
       return row => {
-        if (!row.original.tags || !row.original.variant) {
+        if (!row.original.comments) {
           return null;
         }
 
-        const tags = row.original[row.column.tagsAccessor].map(tag => {
-          return <p className="hyrule--tags  font--base  white-space--nowrap  ellipsis">{tag}</p>;
+        const flags = row.original[row.column.commentsAccessor].map(flag => {
+          return <p className="hyrule--tags  font--base  white-space--nowrap  ellipsis">{flag}</p>;
         });
         const popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
           <div className="display--flex  flex-wrap--wrap  grid--100">
             <div className="grid--100  padding--y-smaller  padding--x-largest  border--bottom">
               <div className="display--flex  flex-align-items--center  grid--100">
                 <i className="icon--shopping_tag-content  font--base  color--black-light  content--base  margin--right-smallest"></i>
-                <span className="grid--grow  font--small  color--black-light">Tags</span>
+                <span className="grid--grow  font--small  color--black-light">Flags</span>
               </div>
             </div>
             <div className="display--flex  flex-wrap--wrap  flex-align-items--center  grid--100  padding--top-smaller  padding--bottom-tiniest  padding--x-largest">
-              {tags}
+              {flags}
             </div>
           </div>
         </Popover>;
 
-        return <a href={'tag?variant=' + row.original.variant} className="display--flex  flex-align-items--center  flex-justify-content--center">
+        return <a href={row.original.commentsUrl} className="display--flex  flex-align-items--center  flex-justify-content--center">
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement='right'
