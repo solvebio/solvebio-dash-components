@@ -18,8 +18,11 @@ app = SolveBioDash(
     client_id='0lxt2cuv78f9a2zynlpqgxoc3o1pgb4whwd5z5wk',
     salt='dash_react_table')
 
-columns = [{'Header': 'A',
-            'accessor': 'a',
+columns = [{'Header': 'Flags',
+            'accessor': 'flags',
+            'Cell': 'flags'},
+           {'Header': 'A',
+            'accessor': 'comments',
             'Cell': 'comments',
             'commentsAccessor': 'comments'},
            {'Header': 'B',
@@ -35,6 +38,7 @@ data = [
     {'a': '1',
      'b': '2',
      'c': '3',
+     'flags': ['tag1', 'tag2'],
      'comments': [{
          'flags': ['tag1', 'tag2'],
          'comment': 'This is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a comment'}],
@@ -42,6 +46,7 @@ data = [
     {'a': '2',
      'b': '3',
      'c': '1',
+     'flags': ['tag1', 'tag2'],
      'comments': [{
          'flags': ['tagA', 'tagB'],
          'comment': 'tagA and tagB comment'},
@@ -49,7 +54,7 @@ data = [
          'flags': ['tagA', 'tagB'],
          'comment': 'tagA and tagB comment'}],
      'commentsUrl': 'comments?variant=variant2'},
-    {'a': '3', 'b': '1', 'c': '2'}]
+    {'a': '3', 'b': '1', 'c': '2', 'flags': ['tag1', 'tag2']}]
 
 sortBy = [{'id': 'c'}]
 

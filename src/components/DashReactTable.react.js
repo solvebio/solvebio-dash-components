@@ -43,6 +43,17 @@ class DashReactTable extends Component {
     else if (key === 'Cell' && value === 'percent') {
       return row => <span className='column__percent'>{row.value}</span>;
     }
+    else if (key === 'Cell' && value === 'flags') {
+      return row => {
+        return <div className="display--flex">
+          {row.original.flags.map(flag => {
+            return <div className="display--flex  flex-align-items--center  margin--right-micro">
+              <p className="hyrule--tags  margin--none  font--base">{flag}</p>
+            </div>;
+          })}
+        </div>;
+      };
+    }
     else if (key === 'Cell' && value === 'comments') {
       return row => {
         let popoverHoverFocus;
