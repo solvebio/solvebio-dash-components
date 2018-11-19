@@ -45,26 +45,47 @@ class DashReactTable extends Component {
     }
     else if (key === 'Cell' && value === 'comments') {
       return row => {
-        if (!row.original.comments) {
-          return null;
-        }
+        let popoverHoverFocus;
+        let iconClasses;
 
-        const flags = row.original[row.column.commentsAccessor].map(flag => {
-          return <p className="hyrule--tags  font--base  white-space--nowrap  ellipsis">{flag}</p>;
-        });
-        const popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
-          <div className="display--flex  flex-wrap--wrap  grid--100">
-            <div className="grid--100  padding--y-smaller  padding--x-largest  border--bottom">
-              <div className="display--flex  flex-align-items--center  grid--100">
-                <i className="icon--shopping_tag-content  font--base  color--black-light  content--base  margin--right-smallest"></i>
-                <span className="grid--grow  font--small  color--black-light">Flags</span>
+        if (!row.original.comments) {
+          popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
+            <div className="display--flex  flex-wrap--wrap  grid--100">
+              <div className="grid--100  padding--y-smallest  padding--x-largest  border-radius--base">
+                <div className="display--flex  flex-align-items--center  grid--100">
+                  <i className="icon--education_language  font--base  color--black-light  content--base  margin--right-smallest"></i>
+                  <span className="grid--grow  font--small  color--black-light">Add a comment</span>
+                </div>
               </div>
             </div>
-            <div className="display--flex  flex-wrap--wrap  flex-align-items--center  grid--100  padding--top-smaller  padding--bottom-tiniest  padding--x-largest">
-              {flags}
+          </Popover>;
+          iconClasses = 'icon--ui-1_circle-bold-add  font--largest  color--grey-clear';
+        } else {
+          const comments = row.original.comments.map(comment => {
+            return <div className="display--flex  flex-align-items--center  grid--auto  padding--y-large  border--bottom  border--remove">
+              {comment.flags.map(flag => {
+                return <div className="display--flex  flex-align-items--center  grid--auto  margin--right-micro">
+                  <p className="hyrule--tags  margin--none  grid--auto  font--base">{flag}</p>
+                </div>;
+              })}
+              <p className="grid--auto  ellipsis  margin--left-tiniest" style={{ 'maxWidth': '25vw' }}>{comment.comment}</p>
+            </div>;
+          });
+          popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
+            <div className="display--flex  flex-direction--column  grid--auto">
+              <div className="grid--auto  bg--grey-clearest  padding--y-smallest  padding--x-largest  border--bottom  border-radius--top-base">
+                <div className="display--flex  flex-align-items--center  grid--100">
+                  <i className="icon--education_language  font--base  color--black-light  content--base  margin--right-smallest"></i>
+                  <span className="grid--grow  font--small  color--black-light">Comments</span>
+                </div>
+              </div>
+              <div className="grid--auto  padding--x-largest">
+                {comments}
+              </div>
             </div>
-          </div>
-        </Popover>;
+          </Popover>;
+          iconClasses = 'icon--education_language  font--largest  color--green-base';
+        }
 
         return <a href={row.original.commentsUrl} className="display--flex  flex-align-items--center  flex-justify-content--center">
           <OverlayTrigger
@@ -72,7 +93,7 @@ class DashReactTable extends Component {
             placement='right'
             overlay={popoverHoverFocus}
           >
-            <i className="icon--shopping_tag  font--base  color--green-base"></i>
+            <i className={iconClasses}></i>
           </OverlayTrigger>
         </a>;
       };

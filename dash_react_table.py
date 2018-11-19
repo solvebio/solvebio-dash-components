@@ -21,16 +21,35 @@ app = SolveBioDash(
 columns = [{'Header': 'A',
             'accessor': 'a',
             'Cell': 'comments',
-            'commentsAccessor': 'comments',
-            'commentsUrlAccessor': 'commentsUrl'},
+            'commentsAccessor': 'comments'},
            {'Header': 'B',
             'accessor': 'b'},
            {'Header': 'C',
             'accessor': 'c'}]
 
-data = [{'a': '1', 'b': '2', 'c': '3', 'comments': ['tag1', 'tag2'], 'commentsUrl': 'comments?variant=SPOP'},
-        {'a': '2', 'b': '3', 'c': '1', 'comments': ['tagA', 'tagB'], 'commentsUrl': 'comments?variant=KRAS'},
-        {'a': '3', 'b': '1', 'c': '2'}]
+# data = [{'a': '1', 'b': '2', 'c': '3', 'comments': ['tag1', 'tag2'], 'commentsUrl': 'comments?variant=SPOP'},
+#         {'a': '2', 'b': '3', 'c': '1', 'comments': ['tagA', 'tagB'], 'commentsUrl': 'comments?variant=KRAS'},
+#         {'a': '3', 'b': '1', 'c': '2'}]
+
+data = [
+    {'a': '1',
+     'b': '2',
+     'c': '3',
+     'comments': [{
+         'flags': ['tag1', 'tag2'],
+         'comment': 'This is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a comment'}],
+     'commentsUrl': 'comments?variant=variant1'},
+    {'a': '2',
+     'b': '3',
+     'c': '1',
+     'comments': [{
+         'flags': ['tagA', 'tagB'],
+         'comment': 'tagA and tagB comment'},
+         {
+         'flags': ['tagA', 'tagB'],
+         'comment': 'tagA and tagB comment'}],
+     'commentsUrl': 'comments?variant=variant2'},
+    {'a': '3', 'b': '1', 'c': '2'}]
 
 sortBy = [{'id': 'c'}]
 
@@ -42,9 +61,9 @@ app.layout = html.Div(
         sortBy=json.dumps(sortBy),
         unknown=False))
 
-app.css.append_css({
-    'external_url': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-})
+# app.css.append_css({
+#     'external_url': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+# })
 
 app.css.append_css({
     "external_url":
