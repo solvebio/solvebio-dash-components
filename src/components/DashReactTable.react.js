@@ -98,7 +98,7 @@ class DashReactTable extends Component {
           iconClasses = 'icon--education_language  font--largest  color--green-base';
         }
 
-        return <a href={row.original.commentsUrl} className="display--flex  flex-align-items--center  flex-justify-content--center">
+        return <a href={row.original.commentsUrl} target='_blank' className="display--flex  flex-align-items--center  flex-justify-content--center  no--after">
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement='right'
