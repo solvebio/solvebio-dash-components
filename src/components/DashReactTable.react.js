@@ -43,15 +43,17 @@ class DashReactTable extends Component {
     else if (key === 'Cell' && value === 'percent') {
       return row => <span className='column__percent'>{row.value}</span>;
     }
-    else if (key === 'Cell' && value === 'flags') {
+    else if (key === 'Cell' && value === 'pill') {
       return row => {
-        return <div className="display--flex">
-          {row.original.flags.map(flag => {
-            return <div className="display--flex  flex-align-items--center  margin--right-micro">
-              <p className="hyrule--tags  margin--none  font--base">{flag}</p>
-            </div>;
-          })}
-        </div>;
+        if (row.original[row.column.pillAccessor]) {
+          return <div className="display--flex">
+            {row.original[row.column.pillAccessor].map(pill => {
+              return <div className="display--flex  flex-align-items--center  margin--right-micro">
+                <p className="hyrule--tags  margin--none  font--base">{pill}</p>
+              </div>;
+            })}
+          </div>;
+        }
       };
     }
     else if (key === 'Cell' && value === 'comments') {
@@ -112,6 +114,11 @@ class DashReactTable extends Component {
     else if (key === 'sortMethod' && value === 'natural') {
       return naturalSort;
     }
+    else if (key === 'filterMethod' && value === 'list') {
+      return (filter, row) => {
+        return JSON.stringify(row[filter.id]).includes(filter.value.toLowerCase());
+      };
+    }
     else {
       return value;
     }
@@ -156,7 +163,7 @@ class DashReactTable extends Component {
 
   defaultFilterMethod(filter, row) {
     if (row[filter.id] !== null) {
-      return String(row[filter.id].toLowerCase()).includes(filter.value.toLowerCase());
+      return String(row[filter.id]).toLowerCase().includes(filter.value.toLowerCase());
     }
   }
 

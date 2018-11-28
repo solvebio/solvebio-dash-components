@@ -18,43 +18,75 @@ app = SolveBioDash(
     client_id='0lxt2cuv78f9a2zynlpqgxoc3o1pgb4whwd5z5wk',
     salt='dash_react_table')
 
-columns = [{'Header': 'Flags',
-            'accessor': 'flags',
-            'Cell': 'flags'},
-           {'Header': 'A',
-            'accessor': 'comments',
-            'Cell': 'comments',
-            'commentsAccessor': 'comments'},
-           {'Header': 'B',
-            'accessor': 'b'},
-           {'Header': 'C',
-            'accessor': 'c'}]
+columns = [
+    {
+        'Header': 'Flags',
+        'accessor': 'flags',
+        'Cell': 'pill',
+        'pillAccessor': 'flags'
+    },
+    {
+        'Header': 'A',
+        'accessor': 'flags',
+        'Cell': 'comments',
+        'commentsAccessor': 'comments',
+        'filterMethod': 'list'
+    },
+    {
+        'Header': 'B',
+        'accessor': 'b'
+    },
+    {
+        'Header': 'C',
+        'accessor': 'c'
+    }
+]
 
 # data = [{'a': '1', 'b': '2', 'c': '3', 'comments': ['tag1', 'tag2'], 'commentsUrl': 'comments?variant=SPOP'},
 #         {'a': '2', 'b': '3', 'c': '1', 'comments': ['tagA', 'tagB'], 'commentsUrl': 'comments?variant=KRAS'},
 #         {'a': '3', 'b': '1', 'c': '2'}]
 
 data = [
-    {'a': '1',
-     'b': '2',
-     'c': '3',
-     'flags': ['tag1', 'tag2'],
-     'comments': [{
-         'flags': ['tag1', 'tag2'],
-         'comment': 'This is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a comment'}],
-     'commentsUrl': 'comments?variant=variant1'},
-    {'a': '2',
-     'b': '3',
-     'c': '1',
-     'flags': ['tag1', 'tag2'],
-     'comments': [{
-         'flags': ['tagA', 'tagB'],
-         'comment': 'tagA and tagB comment'},
-         {
-         'flags': ['tagA', 'tagB'],
-         'comment': 'tagA and tagB comment'}],
-     'commentsUrl': 'comments?variant=variant2'},
-    {'a': '3', 'b': '1', 'c': '2', 'flags': ['tag1', 'tag2']}]
+    {
+        'a': '1',
+        'b': '2',
+        'c': '3',
+        'flags': ['tag1', 'tag2'],
+        'comments': [
+            {
+                'flags': ['tag1'],
+                'comment': 'This is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a commentThis is a comment'
+            },
+            {
+                'flags': ['tag2'],
+                'comment': 'This is a comment'
+            }
+        ],
+        'commentsUrl': 'comments?variant=variant1'
+    },
+    {
+        'a': '2',
+        'b': '3',
+        'c': '1',
+        'flags': ['tagA', 'tagB'],
+        'comments': [
+            {
+                'flags': ['tagA'],
+                'comment': 'tagA comment'
+            },
+            {
+                'flags': ['tagB'],
+                'comment': 'tagA comment'
+            }
+        ],
+        'commentsUrl': 'comments?variant=variant2'
+    },
+    {
+        'a': '3',
+        'b': '1',
+        'c': '2'
+    }
+]
 
 sortBy = [{'id': 'c'}]
 
