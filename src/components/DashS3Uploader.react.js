@@ -28,7 +28,7 @@ class DashS3Uploader extends Component {
             this.setState({ uploadedFiles: uploadedFiles })
             urls.forEach((url, index) => {
                 this.uploadFile([this.state.files[index]], { signedUrl: url })
-            })
+            });
         }
     }
 
