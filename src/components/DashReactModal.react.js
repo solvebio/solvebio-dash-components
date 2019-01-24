@@ -18,18 +18,19 @@ class DashReactModal extends Component {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-  
+
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   handleCloseModal() {
     this.props.setProps({
-      isOpen: false
+      openSwitch: false,
+      closeSwitch: false
     });
   }
 
@@ -38,7 +39,8 @@ class DashReactModal extends Component {
     return (
       <div>
         <ReactModal
-          isOpen={this.props.isOpen}
+          // XOR implementation to accomodate Dash callback pattern
+          isOpen={this.props.openSwitch ? !this.props.closeSwitch : this.props.closeSwitch}
           ariaHideApp={false}
           onRequestClose={this.handleCloseModal}
           style={{
@@ -69,11 +71,13 @@ DashReactModal.propTypes = {
   id: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  isOpen: PropTypes.bool
+  openSwitch: PropTypes.bool,
+  closeSwitch: PropTypes.bool
 };
 
 DashReactModal.defaultProps = {
-  isOpen: false
+  openSwitch: false,
+  closeSwitch: false
 };
 
 export default DashReactModal;
