@@ -8,21 +8,6 @@ app = SolveBioDash(
     name=__name__,
     title='OncoPrint')
 
-# oncoprint_data = json.dumps([
-#     {
-#         'sample': 'TCGA-25-2392-01',
-#         'gene': 'TP53',
-#         'alteration': 'FUSION',
-#         'type': 'FUSION',
-#     },
-#     {
-#         'sample': 'TCGA-25-2393-01',
-#         'gene': 'TP53',
-#         'alteration': 'FUSION',
-#         'type': 'FUSION',
-#     }
-# ])
-
 oncoprint_data = json.dumps([
     {
         'sample': u'2-599672',
