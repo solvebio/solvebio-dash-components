@@ -176,7 +176,9 @@ class DashReactTable extends Component {
       }
     });
     const tableProps = { getTrProps: this.getTrProps };
-    const numRows = Math.floor(this.state.height * 0.4 / 30);
+    // Dynamic number of rows based on viewport height
+    // const numRows = Math.floor(this.state.height * 0.8 / 30);
+    const numRows = Math.min(data.length, 100);
     const sortBy = JSON.parse(this.props.sortBy);
 
     return (
@@ -187,9 +189,8 @@ class DashReactTable extends Component {
           onSortedChange={this.onSortedChange}
           data={data}
           columns={columns}
-          pageSize={Math.min(data.length, numRows)}
+          pageSize={numRows}
           showPageSizeOptions={false}
-          showPagination={data.length > numRows}
           defaultFilterMethod={this.defaultFilterMethod}
           defaultSorted={sortBy}
           className="-striped -highlight"
