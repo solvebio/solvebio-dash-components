@@ -128,7 +128,7 @@ export default class OncoPrint extends PureComponent {
         const ratios = getEventRatiosPerGene(inputData, samples.length);
 
         const formatGenes = (list) =>
-            list.map((gene) => `${gene} (${ratios[gene]}%)`);
+            list.map((gene) => `${gene} (${ratios[gene] || 0}%)`);
 
         let base = 0;
         const bBackground = [];

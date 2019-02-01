@@ -95,12 +95,12 @@ export const getEventRatiosPerGene = (events, nbSamples) => {
         if (!acc[event.gene]['samples'].has(event.sample)) {
           acc[event.gene]['samples'].add(event.sample);
           acc[event.gene]['count'] += 1;
-        } else {
-          acc[event.gene] = {
-            count: 1,
-            samples: new Set([event.sample])
-          };
         }
+      } else {
+        acc[event.gene] = {
+          count: 1,
+          samples: new Set([event.sample])
+        };
       }
     }
 
@@ -110,8 +110,6 @@ export const getEventRatiosPerGene = (events, nbSamples) => {
   Object.keys(map).forEach((gene) => {
     map[gene] = Math.floor(map[gene]['count'] / nbSamples * 100);
   });
-
-  debugger;
 
   return map;
 };
