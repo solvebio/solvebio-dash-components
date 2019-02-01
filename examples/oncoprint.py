@@ -10,26 +10,29 @@ app = SolveBioDash(
 
 oncoprint_data = json.dumps([
     {
-        'sample': u'2-599672',
-        'alteration': u'AMP',
-        'gene': u'MATR3',
+        'sample': 'SAMPLE-1',
+        'alteration': 'AMP',
+        'gene': 'GENE',
         'type': 'CNA'
     },
     {
-        'sample': u'2-599672',
-        'alteration': u'FUSION',
-        'gene': u'MATR3',
+        'sample': 'SAMPLE-1',
+        'alteration': 'FUSION',
+        'gene': 'GENE',
         'type': 'FUSION'
     },
     {
-        'sample': u'2-599673',
-        'alteration': u'FUSION',
-        'gene': u'MATR3',
-        'type': 'FUSION'
-    }
+        'sample': 'SAMPLE-2',
+        'gene': 'GENE1'
+    },
+    {
+        'gene': 'GENE2'
+    },
 ])
 
-app.layout = sdc.DashOncoPrint(data=oncoprint_data)
+app.layout = sdc.DashOncoPrint(
+    data=oncoprint_data,
+    height=1000)
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
