@@ -139,7 +139,9 @@ export default class OncoPrint extends PureComponent {
         // Background is used to draw the matrix (genes * samples)
         samples.forEach((s) => {
             bBackground.push(...Array(genes.length).fill(base));
-            tBackground.push(...Array(genes.length).fill(s));
+            genes.forEach((g) => {
+              tBackground.push(`${g}<br>${s}`);
+            });
             xBackground.push(...Array(genes.length).fill(1));
             yBackground.push(...formatGenes(genes));
             base += 1;
@@ -173,7 +175,7 @@ export default class OncoPrint extends PureComponent {
 
             // Mutations should have the original text on it, not the type of mutation
             const text_arr = aggr.events.map(
-                (event) => `${event.sample}<br>${getDisplayName(event)}`
+                (event) => `${event.gene}<br>${event.sample}<br>${getDisplayName(event)}`
             );
 
             // where to draw a bar for this entry

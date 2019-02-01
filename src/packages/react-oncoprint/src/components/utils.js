@@ -227,6 +227,9 @@ export const createSortEventsForGeneComparator = (gene, map) => (s1, s2) =>
 // (genes) and columns (samples) into account. We returns the sorted set of
 // samples to display on X axix.
 export const getSortedSamples = (events) => {
+  // Remove events with no samples
+  events = events.filter((e) => e.sample !== undefined);
+
   // Get a map with samples sorted by gene and events.
   const samplesMap = createSamplesMap(events);
   // Get a unique list of genes, sorted by the natural order in the events.
@@ -267,7 +270,7 @@ export const aggregate = (events) => {
   const out = {};
 
   events.forEach((e) => {
-    if (!e.type || e.type === 'NONE') {
+    if (!e.type || e.type === 'NONE' || !e.sample) {
       return;
     }
 
