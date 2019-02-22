@@ -116,6 +116,7 @@ export default class OncoPrint extends PureComponent {
     getData() {
         const {
             data: inputData,
+            nSamples: nSamples,
             padding,
             colorscale,
             backgroundcolor,
@@ -125,7 +126,7 @@ export default class OncoPrint extends PureComponent {
         const events = aggregate(inputData);
         const genes = getSortedGenes(inputData);
         const samples = getSortedSamples(inputData);
-        const ratios = getEventRatiosPerGene(inputData, samples.length);
+        const ratios = getEventRatiosPerGene(inputData, nSamples);
 
         const formatGenes = (list) =>
             list.map((gene) => `${gene} (${ratios[gene] || 0}%)`);

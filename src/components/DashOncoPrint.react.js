@@ -8,18 +8,21 @@ class DashOncoPrint extends Component {
   render() {
     const data = JSON.parse(this.props.data);
     const height = this.props.height || 500;
+    const nSamples = this.props.nSamples;
 
     return <OncoPrint
-        data={data}
-        height={height}
-      />;
+      data={data}
+      height={height}
+      nSamples={nSamples}
+    />;
   }
 }
 
 DashOncoPrint.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
-  height: PropTypes.number
+  height: PropTypes.number,
+  nSamples: PropTypes.number
 };
 
 export default DashOncoPrint;
