@@ -48,6 +48,7 @@
     "react-modal": "^3.4.5",
     "react-oncoprint": "^1.2.2",
     "react-s3-uploader": "^4.6.2",
+    "react-select": "^2.4.1",
     "react-table": "^6.8.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
