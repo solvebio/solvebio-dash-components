@@ -15,12 +15,15 @@ class DashReactSelect extends Component {
 
   handleCreateOption(newValues) {
     let values = this.state.values.slice();
-    newValues = newValues.split(',');
+    newValues = newValues.trim();
+    newValues = this.props.split ? newValues.split(/[ ,]+/) : [newValues];
     newValues.forEach(value => {
-      values.push({
-        label: value,
-        value: value
-      });
+      if (value !== '') {
+        values.push({
+          label: value,
+          value: value
+        });
+      }
     });
     this.setState({ values: values });
   }
@@ -49,6 +52,7 @@ DashReactSelect.propTypes = {
       value: PropTypes.string
     })
   ),
+  split: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.shape({
       label: PropTypes.string,
@@ -66,6 +70,7 @@ DashReactSelect.propTypes = {
 DashReactSelect.defaultProps = {
   isMulti: true,
   options: [],
+  split: true,
   value: []
 };
 
