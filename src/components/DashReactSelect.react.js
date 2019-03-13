@@ -26,10 +26,12 @@ class DashReactSelect extends Component {
       }
     });
     this.setState({ values: values });
+    this.props.setProps({ value: values });
   }
 
   handleChange(newValues) {
     this.setState({ values: newValues });
+    this.props.setProps({ value: newValues });
   }
 
   render() {
