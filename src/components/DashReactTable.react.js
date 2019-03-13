@@ -163,7 +163,13 @@ class DashReactTable extends Component {
 
   defaultFilterMethod(filter, row) {
     if (row[filter.id] !== null) {
-      return String(row[filter.id]).toLowerCase().includes(filter.value.toLowerCase());
+      const columnValue = String(row[filter.id]).toLowerCase();
+      const filterValue = filter.value.trim().toLowerCase();
+      if (filterValue.includes(',')) {
+        return filterValue.split(/[ ,]+/).includes(columnValue);
+      } else {
+        return columnValue.includes(filterValue);
+      }
     }
   }
 
@@ -185,6 +191,7 @@ class DashReactTable extends Component {
       <div>
         <ReactTable
           filterable
+          // filtered={this.props.filtered}
           {...tableProps}
           onSortedChange={this.onSortedChange}
           data={data}
@@ -202,6 +209,7 @@ class DashReactTable extends Component {
 }
 
 DashReactTable.defaultProps = {
+  // filtered: [],
   sortBy: '[]'
 };
 
@@ -209,6 +217,14 @@ DashReactTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
   columns: PropTypes.string,
+  // filtered: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     id: PropTypes.string,
+  //     value: PropTypes.arrayOf(
+  //       PropTypes.string
+  //     )
+  //   })
+  // ),
   sorted: PropTypes.string,
   sortBy: PropTypes.string,
   unknown: PropTypes.bool
