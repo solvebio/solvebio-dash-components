@@ -163,13 +163,7 @@ class DashReactTable extends Component {
 
   defaultFilterMethod(filter, row) {
     if (row[filter.id] !== null) {
-      const columnValue = String(row[filter.id]).toLowerCase();
-      const filterValue = filter.value.trim().toLowerCase();
-      if (filterValue.includes(',')) {
-        return filterValue.split(/[ ,]+/).includes(columnValue);
-      } else {
-        return columnValue.includes(filterValue);
-      }
+      return String(row[filter.id]).toLowerCase().includes(filter.value.toLowerCase());
     }
   }
 
