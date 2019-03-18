@@ -185,7 +185,6 @@ class DashReactTable extends Component {
       <div>
         <ReactTable
           filterable
-          // filtered={this.props.filtered}
           {...tableProps}
           onSortedChange={this.onSortedChange}
           data={data}
@@ -203,7 +202,6 @@ class DashReactTable extends Component {
 }
 
 DashReactTable.defaultProps = {
-  // filtered: [],
   sortBy: '[]'
 };
 
@@ -211,14 +209,6 @@ DashReactTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
   columns: PropTypes.string,
-  // filtered: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     id: PropTypes.string,
-  //     value: PropTypes.arrayOf(
-  //       PropTypes.string
-  //     )
-  //   })
-  // ),
   sorted: PropTypes.string,
   sortBy: PropTypes.string,
   unknown: PropTypes.bool
