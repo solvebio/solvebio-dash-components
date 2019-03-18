@@ -13,8 +13,15 @@ class DashReactSelect extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.value !== newProps.value) {
+      this.setState({ values: newProps.value });
+    }
+  }
+
   handleCreateOption(newValues) {
-    let values = this.state.values.slice();
+    // Copy current state
+    let values = this.state.values !== null ? this.state.values.slice() : [];
     newValues = newValues.trim();
     newValues = this.props.split ? newValues.split(/[ ,]+/) : [newValues];
     newValues.forEach(value => {
@@ -26,25 +33,33 @@ class DashReactSelect extends Component {
       }
     });
     this.setState({ values: values });
+    this.props.setProps({ value: values });
   }
 
   handleChange(newValues) {
     this.setState({ values: newValues });
+    this.props.setProps({ value: newValues });
   }
 
   render() {
-    return <Creatable
-      isMulti={this.props.isMulti}
-      options={this.props.options}
-      value={this.state.values}
-      onChange={this.handleChange}
-      onCreateOption={this.handleCreateOption}
-    />;
+    return (
+      <Creatable
+        formatCreateLabel={() => this.props.children}
+        isMulti={this.props.isMulti}
+        noOptionsMessage={() => null}
+        onChange={this.handleChange}
+        onCreateOption={this.handleCreateOption}
+        options={this.props.options}
+        placeholder={this.props.placeholder}
+        value={this.state.values}
+      />
+    );
   }
 }
 
 DashReactSelect.propTypes = {
   id: PropTypes.string,
+  children: PropTypes.node,
   isMulti: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,6 +67,7 @@ DashReactSelect.propTypes = {
       value: PropTypes.string
     })
   ),
+  placeholder: PropTypes.string,
   split: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.shape({
@@ -70,6 +86,7 @@ DashReactSelect.propTypes = {
 DashReactSelect.defaultProps = {
   isMulti: true,
   options: [],
+  placeholder: 'Select...',
   split: true,
   value: []
 };
