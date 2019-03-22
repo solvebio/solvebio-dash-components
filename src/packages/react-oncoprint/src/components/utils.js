@@ -39,7 +39,7 @@ export const SupportedEvents = {
   },
   HOMDEL: {
     colorHTML: '#0000ff',
-    displayName: 'Deep deletion'
+    displayName: 'Deletion'
   },
   // mRNA expressions
   UP: {
