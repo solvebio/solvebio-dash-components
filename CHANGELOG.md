@@ -1,6 +1,11 @@
 # Change Log
 
 
+# 0.6.2 (2018-03-22)
+
+- Modified 'Deep deletion' label to 'Deletion' in DashOncoPrint component
+
+
 # 0.6.1 (2018-03-13)
 
 - DashReactTable columns now filterable using a comma-separated list of values
