@@ -9,6 +9,7 @@ import {
     getColor,
     getDisplayName,
     getEventRatiosPerGene,
+    getGeneLink,
     getGeneNames,
     getSortedGenes,
     getSortedSamples
@@ -117,6 +118,10 @@ export default class OncoPrint extends PureComponent {
         const {
             data: inputData,
             nSamples: nSamples,
+            vardictId,
+            vardictUrl,
+            seq2cId,
+            seq2cUrl,
             padding,
             colorscale,
             backgroundcolor,
@@ -129,7 +134,12 @@ export default class OncoPrint extends PureComponent {
         const ratios = getEventRatiosPerGene(inputData, nSamples);
 
         const formatGenes = (list) =>
-            list.map((gene) => `${gene} (${ratios[gene] || 0}%)`);
+            list.map((gene) => {
+              const geneLinks = getGeneLink(gene, vardictId, vardictUrl, seq2cId, seq2cUrl);
+              const vardictLink = vardictId ? `<a href='${geneLinks.vardict}'>vardict</a>` : 'vardict';
+              const seq2cLink = seq2cId ? `<a href='${geneLinks.seq2c}'>seq2c</a>` : 'seq2c';
+              return `${gene} (${ratios[gene] || 0}%)<br>${vardictLink}  ${seq2cLink}`;
+            });
 
         let base = 0;
         const bBackground = [];
