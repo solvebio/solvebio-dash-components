@@ -311,6 +311,7 @@ export const getGeneLink = (gene, vardictId, vardictUrl, seq2cId, seq2cUrl) => {
   vardictUrlParsed.filters.push(geneFilter);
   seq2cUrlParsed.filters.push(geneFilter);
 
+  // Generalize this hardcoded URL to take from prop instead
   return {
     vardict: `https://my.solvebio.com/data/${vardictId}/summary#${btoa(JSON.stringify(vardictUrlParsed))}`,
     seq2c: `https://my.solvebio.com/data/${seq2cId}/summary#${btoa(JSON.stringify(seq2cUrlParsed))}`
