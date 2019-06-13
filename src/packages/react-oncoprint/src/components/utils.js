@@ -289,6 +289,35 @@ export const aggregate = (events) => {
 };
 
 
+export const getGeneLink = (gene, vardictId, vardictUrl, seq2cId, seq2cUrl) => {
+  const vardictUrlParsed = JSON.parse(atob(vardictUrl));
+  const seq2cUrlParsed = JSON.parse(atob(seq2cUrl));
+  const geneFilter = {
+    'condition': 'eq',
+    'entity': {
+      'entity_type': 'gene'
+    },
+    'field': {
+      'data_type': 'string',
+      'entity_type': 'gene',
+      'title': 'Gene',
+      'name': 'gene'
+    },
+    'textCondition': 'equals',
+    'type': 'field',
+    'value': gene
+  };
+
+  vardictUrlParsed.filters.push(geneFilter);
+  seq2cUrlParsed.filters.push(geneFilter);
+
+  return {
+    vardict: `https://my.solvebio.com/data/${vardictId}/summary#${btoa(JSON.stringify(vardictUrlParsed))}`,
+    seq2c: `https://my.solvebio.com/data/${seq2cId}/summary#${btoa(JSON.stringify(seq2cUrlParsed))}`
+  }
+}
+
+
 // Returns the display name of an event.
 export const getDisplayName = (event) => {
   const eventName = isMutation(event) ? event.type : event.alteration;
