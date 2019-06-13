@@ -147,7 +147,7 @@ the publishing steps into one workflow [here](https://github.com/plotly/dash-com
         $ python setup.py sdist
 
         # Publish to PyPi using
-        $ twine upload dist/*
+        $ twine upload dist/solvebio_dash_components-<new_version>.tar.gz
 
 
 ## Builder / Archetype
