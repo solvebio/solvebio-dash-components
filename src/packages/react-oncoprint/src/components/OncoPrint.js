@@ -119,9 +119,9 @@ export default class OncoPrint extends PureComponent {
             data: inputData,
             nSamples: nSamples,
             vardictId,
-            vardictUrl,
+            vardictFilters,
             seq2cId,
-            seq2cUrl,
+            seq2cFilters,
             padding,
             colorscale,
             backgroundcolor,
@@ -135,7 +135,7 @@ export default class OncoPrint extends PureComponent {
 
         const formatGenes = (list) =>
             list.map((gene) => {
-              const geneLinks = getGeneLink(gene, vardictId, vardictUrl, seq2cId, seq2cUrl);
+              const geneLinks = getGeneLink(gene, vardictId, vardictFilters, seq2cId, seq2cFilters);
               const vardictLink = vardictId ? `<a href='${geneLinks.vardict}'>vardict</a>` : 'vardict';
               const seq2cLink = seq2cId ? `<a href='${geneLinks.seq2c}'>seq2c</a>` : 'seq2c';
               return `${gene} (${ratios[gene] || 0}%)<br>${vardictLink}  ${seq2cLink}`;

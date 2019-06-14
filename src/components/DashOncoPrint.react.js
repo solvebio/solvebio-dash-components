@@ -10,18 +10,18 @@ class DashOncoPrint extends Component {
     const height = this.props.height || 500;
     const nSamples = this.props.nSamples;
     const vardictId = this.props.vardictId;
-    const vardictUrl = this.props.vardictUrl;
+    const vardictFilters = this.props.vardictFilters;
     const seq2cId = this.props.seq2cId;
-    const seq2cUrl = this.props.seq2cUrl;
+    const seq2cFilters = this.props.seq2cFilters;
 
     return <OncoPrint
       data={data}
       height={height}
       nSamples={nSamples}
       vardictId={vardictId}
-      vardictUrl={vardictUrl}
+      vardictFilters={vardictFilters}
       seq2cId={seq2cId}
-      seq2cUrl={seq2cUrl}
+      seq2cFilters={seq2cFilters}
     />;
   }
 }
@@ -32,9 +32,9 @@ DashOncoPrint.propTypes = {
   height: PropTypes.number,
   nSamples: PropTypes.number,
   vardictId: PropTypes.string,
-  vardictUrl: PropTypes.string,
+  vardictFilters: PropTypes.string,
   seq2cId: PropTypes.string,
-  seq2cUrl: PropTypes.string
+  seq2cFilters: PropTypes.string
 };
 
 export default DashOncoPrint;

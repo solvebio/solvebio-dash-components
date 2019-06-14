@@ -1,5 +1,10 @@
 # Change Log
 
+# 0.6.4 (2019-06-14)
+
+- Rename DashOncoPrint component URL-related props
+
+
 # 0.6.3 (2019-06-13)
 
 - Added URL-related props to support links in DashOncoPrint component
