@@ -289,9 +289,9 @@ export const aggregate = (events) => {
 };
 
 
-export const getGeneLink = (gene, vardictId, vardictUrl, seq2cId, seq2cUrl) => {
-  const vardictUrlParsed = JSON.parse(atob(vardictUrl));
-  const seq2cUrlParsed = JSON.parse(atob(seq2cUrl));
+export const getGeneLink = (gene, vardictId, vardictFilters, seq2cId, seq2cFilters) => {
+  const vardictFiltersParsed = JSON.parse(atob(vardictFilters));
+  const seq2cFiltersParsed = JSON.parse(atob(seq2cFilters));
   const geneFilter = {
     'condition': 'eq',
     'entity': {
@@ -308,13 +308,13 @@ export const getGeneLink = (gene, vardictId, vardictUrl, seq2cId, seq2cUrl) => {
     'value': gene
   };
 
-  vardictUrlParsed.filters.push(geneFilter);
-  seq2cUrlParsed.filters.push(geneFilter);
+  vardictFiltersParsed.filters.push(geneFilter);
+  seq2cFiltersParsed.filters.push(geneFilter);
 
   // Generalize this hardcoded URL to take from prop instead
   return {
-    vardict: `https://my.solvebio.com/data/${vardictId}/summary#${btoa(JSON.stringify(vardictUrlParsed))}`,
-    seq2c: `https://my.solvebio.com/data/${seq2cId}/summary#${btoa(JSON.stringify(seq2cUrlParsed))}`
+    vardict: `https://my.solvebio.com/data/${vardictId}/summary#${btoa(JSON.stringify(vardictFiltersParsed))}`,
+    seq2c: `https://my.solvebio.com/data/${seq2cId}/summary#${btoa(JSON.stringify(seq2cFiltersParsed))}`
   }
 }
 
