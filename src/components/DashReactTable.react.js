@@ -120,7 +120,6 @@ class DashReactTable extends Component {
                   <p className="hyrule--tags  margin--none  grid--auto  font--base">{tag}</p>
                 </div>;
               })}
-              <p className="grid--auto  ellipsis  margin--left-tiniest" style={{ 'maxWidth': '25vw' }}></p>
             </div>;
           const popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
             <div className="display--flex  flex-direction--column  grid--auto">
@@ -141,6 +140,41 @@ class DashReactTable extends Component {
               overlay={popoverHoverFocus}
             >
               <i className='icon--shopping_tag  font--largest  color--green-base'></i>
+            </OverlayTrigger>
+          </p>;
+        }
+      };
+    }
+    // TODO: Generalize this to take input from Dash
+    else if (key === 'Cell' && value === 'admins') {
+      return row => {
+        if (row.original.admins.length) {
+          const admins = <div className="display--flex  flex-wrap--wrap  flex-align-items--center  grid--100  padding--y-smaller  padding--x-smaller">
+              {row.original.admins.map(admin => {
+                return <div className="display--flex  flex-align-items--center  grid--auto  margin--y-micro  margin--x-micro">
+                  <p className="hyrule--tags  margin--none  grid--auto  font--base">{admin}</p>
+                </div>;
+              })}
+            </div>;
+          const popoverHoverFocus = <Popover id="popover-trigger-hover-focus">
+            <div className="display--flex  flex-direction--column  grid--auto">
+              <div className="grid--auto  bg--grey-clearest  padding--y-smallest  padding--x-largest  border--bottom  border-radius--top-base">
+                <div className="display--flex  flex-align-items--center  grid--100">
+                  <i className="icon--users_single-body  font--base  color--black-light  content--base  margin--right-smallest"></i>
+                  <span className="grid--grow  font--small  color--black-light">Admins</span>
+                </div>
+              </div>
+              {admins}
+            </div>
+          </Popover>;
+
+          return <p className="display--flex  flex-align-items--center  flex-justify-content--center  no--after">
+            <OverlayTrigger
+              trigger={['hover', 'focus']}
+              placement='right'
+              overlay={popoverHoverFocus}
+            >
+              <i className='icon--users_single-body  font--largest  color--grey-base'></i>
             </OverlayTrigger>
           </p>;
         }
