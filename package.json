@@ -37,7 +37,7 @@
     "json-stringify-safe": "^5.0.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.5.9",
     "ramda": "^0.25.0",
     "react": "^15.5.4",
