@@ -34,7 +34,7 @@ plotly==2.4.1
 prompt-toolkit==1.0.15
 ptyprocess==0.5.2
 pycurl==7.43.0.1
-Pygments==2.2.0
+Pygments==2.15.0
 PyPrind==2.11.2
 python-dateutil==2.6.1
 pytz==2018.3
