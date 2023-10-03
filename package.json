@@ -31,7 +31,7 @@
   "dependencies": {
     "builder": "3.2.2",
     "copyfiles": "^1.2.0",
-    "css-loader": "^0.28.11",
+    "css-loader": "^6.8.1",
     "dash-components-archetype": "^0.2.11",
     "javascript-natural-sort": "^0.7.1",
     "json-stringify-safe": "^5.0.1",
